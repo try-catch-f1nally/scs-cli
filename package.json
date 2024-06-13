@@ -3,15 +3,23 @@
   "version": "1.0.0",
   "description": "Secure Cloud Storage CLI",
   "keywords": [],
-  "main": "index.js",
-  "type": "module",
+  "files": [
+    "lib/**/*"
+  ],
+  "main": "./lib/index.js",
+  "bin": {
+    "scs": "./lib/index.js"
+  },
+  "type": "commonjs",
   "engines": {
-    "node": "18"
+    "node": ">=20"
   },
   "scripts": {
     "test": "echo \"No test command specified\"",
-    "start": "node --experimental-specifier-resolution=node ./dist/index.js",
-    "build": "rm -rf ./dist && tsc",
+    "clean": "rm -rf ./lib",
+    "build": "npm run clean && tsc && npm run build:types",
+    "build:types": "tsc --declaration --outDir ./lib/types --emitDeclarationOnly",
+    "prepack": "npm run build",
     "lint": "eslint --ignore-path .gitignore ./src/**/*.ts",
     "lint:fix": "eslint --ignore-path .gitignore --fix ./src/**/*.ts",
     "format": "prettier --ignore-path .gitignore --ignore-unknown --check . && ec",

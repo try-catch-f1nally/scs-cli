@@ -1,9 +1,13 @@
+#! /usr/bin/env node
+
 import fs from 'node:fs';
 import path from 'node:path';
 import {Command} from 'commander';
 import loginCommand from './auth/login/command';
 import logoutCommand from './auth/logout/command';
 import registerCommand from './auth/register/command';
+import changeLoginCommand from './auth/change-login/command';
+import changePasswordCommand from './auth/change-password/command';
 import deleteUploadCommand from './storage/delete/command';
 import downloadCommand from './storage/download/command';
 import listUploadsCommand from './storage/list/command';
@@ -16,6 +20,8 @@ new Command('scs')
   .addCommand(registerCommand)
   .addCommand(loginCommand)
   .addCommand(logoutCommand)
+  .addCommand(changeLoginCommand)
+  .addCommand(changePasswordCommand)
   .addCommand(deleteUploadCommand)
   .addCommand(downloadCommand)
   .addCommand(listUploadsCommand)
